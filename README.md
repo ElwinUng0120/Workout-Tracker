@@ -16,7 +16,7 @@ This project has the following files:<br>
 - models/Workout.js: contains data structure for the schema of the database
 - public folder: contains client facing *HTML*, *JavaScript* and *CSS* files
 - api_routes.js: contains endpoints for API call to interact with the database
-- seed.js: test entries of the database fo the project
+- seed.js: test entries of the database for the project
 
 <br>
 
