@@ -1,13 +1,11 @@
 // get all workout data from back-end
 
-fetch("/api/workouts/range")
-  .then(response => {
-    return response.json();
-  })
-  .then(data => {
-    populateChart(data);
-  });
-
+fetch("/api/workouts/range",{
+  type: 'GET'
+}).then(async function(response){
+  const data = await response.json();
+  populateChart(data);
+});
 
 API.getWorkoutsInRange()
 
