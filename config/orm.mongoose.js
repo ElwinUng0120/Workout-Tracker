@@ -1,10 +1,7 @@
 const mongoose = require("mongoose");
-if(process.env.DB_URL){
-    mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
-} else {
-    mongoose.connect("mongodb://localhost:27017/workout",
+
+mongoose.connect(process.env.DB_URL || "mongodb://localhost:27017/workout",
         {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
-}
 
 const db = require('../models');
 
@@ -17,7 +14,9 @@ async function getLastWorkout(){
 
 async function addExercise(id, data){
     console.log(`[addExercise] passing data to insert into database: `, data);
-    const response = await db.Workout.update({_id: id}, {$push: {exercises: {data}}}).catch((err) => console.log(err));
+
+    const response = await db.Workout.updateOne({_id: id}, {$push: {exercises: data}})
+                                     .catch((err) => console.log(err));
     console.log(`[addExercise] repsonse received: `, response);
     return response;
 }
