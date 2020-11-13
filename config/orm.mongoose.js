@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://localhost:27017/workout",
-    {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+if(process.env.DB_URL){
+    mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+} else {
+    mongoose.connect("mongodb://localhost:27017/workout",
+        {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+}
 
 const db = require('../models');
 
