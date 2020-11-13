@@ -30,7 +30,7 @@ async function createWorkout(data = {}){
 
 async function getWorkoutsInRange(){
     console.log(`[getWorkoutInRange] getting data from database...`);
-    const response = await db.Workout.find({}).catch((err) => console.log(err));
+    const response = await db.Workout.find({}).limit(7).catch((err) => console.log(err));
     console.log(`[getWorkoutInRange] response received: `, response);
     return response;
 }
